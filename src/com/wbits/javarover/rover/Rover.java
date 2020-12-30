@@ -25,8 +25,8 @@ public class Rover {
         switch (command) {
             case "r" -> bearing = Bearing.turnRight(bearing);
             case "l" -> bearing = Bearing.turnLeft(bearing);
-            case "f" -> move(bearing.heading());
-            case "b" -> move((bearing.heading() + 2) % 4);
+            case "f" -> move(bearing.direction());
+            case "b" -> move((bearing.direction() + 2) % 4);
         }
     }
 

@@ -1,16 +1,11 @@
 package com.wbits.javarover.rover;
 
 public class Bearing {
-    private final String[] directions;
-    private final int heading;
+    final private static String[] directions = {"N", "E", "S", "W"};
+    final private int direction;
 
-    private Bearing(int heading) {
-        this.heading = heading;
-        directions = new String[4];
-        directions[0] = "N";
-        directions[1] = "E";
-        directions[2] = "S";
-        directions[3] = "W";
+    private Bearing(int direction) {
+        this.direction = direction;
     }
 
     public static Bearing north() {
@@ -18,22 +13,18 @@ public class Bearing {
     }
 
     public static Bearing turnRight(Bearing bearing) {
-        int newHeading = (bearing.heading + 1) % 4;
-
-        return new Bearing(newHeading);
+        return new Bearing((bearing.direction + 1) % 4);
     }
 
     public static Bearing turnLeft(Bearing bearing) {
-        int newHeading = (bearing.heading + 3) % 4;
-
-        return new Bearing(newHeading);
+        return new Bearing((bearing.direction + 3) % 4);
     }
 
-    public int heading() {
-        return heading;
+    public int direction() {
+        return direction;
     }
 
     public String toString() {
-        return directions[heading];
+        return directions[direction];
     }
 }
