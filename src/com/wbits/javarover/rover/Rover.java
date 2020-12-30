@@ -4,21 +4,15 @@ public class Rover {
     private Position position;
     private Bearing bearing;
 
-    private Rover(Bearing bearing, Position position) {
-        this.bearing = bearing;
-        this.position = position;
+    public Rover() {
+        bearing = Bearing.headingNorth();
+        position = Position.start();
     }
 
-    public static Rover init() {
-        return new Rover(Bearing.north(), Position.start());
-    }
-
-    public String executeCommand(String command) {
+    public void executeCommand(String command) {
         for (String c: command.split("(?!^)")) {
             runSingleCommand(c);
         }
-
-        return String.format("%s, %d, %d", String.valueOf(bearing), position.x(), position.y());
     }
 
     private void runSingleCommand(String command) {
@@ -37,5 +31,9 @@ public class Rover {
             case 2 -> position = Position.moveSouth(position);
             case 3 -> position = Position.moveWest(position);
         }
+    }
+
+    public String toString() {
+        return String.format("%s, %d, %d", String.valueOf(bearing), position.x(), position.y());
     }
 }

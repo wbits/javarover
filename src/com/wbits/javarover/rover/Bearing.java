@@ -2,29 +2,29 @@ package com.wbits.javarover.rover;
 
 public class Bearing {
     final private static String[] directions = {"N", "E", "S", "W"};
-    final private int direction;
+    final private int headingDirection;
 
-    private Bearing(int direction) {
-        this.direction = direction;
+    private Bearing(int headingDirection) {
+        this.headingDirection = headingDirection;
     }
 
-    public static Bearing north() {
+    public static Bearing headingNorth() {
         return new Bearing(0);
     }
 
     public static Bearing turnRight(Bearing bearing) {
-        return new Bearing((bearing.direction + 1) % 4);
+        return new Bearing((bearing.headingDirection + 1) % 4);
     }
 
     public static Bearing turnLeft(Bearing bearing) {
-        return new Bearing((bearing.direction + 3) % 4);
+        return new Bearing((bearing.headingDirection + 3) % 4);
     }
 
     public int direction() {
-        return direction;
+        return headingDirection;
     }
 
     public String toString() {
-        return directions[direction];
+        return directions[headingDirection];
     }
 }
